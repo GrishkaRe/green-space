@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_space/screens/login_screen.dart';
 import 'package:green_space/screens/registration_screen.dart';
 
 class HelloScreen extends StatefulWidget {
@@ -170,12 +171,20 @@ class _HelloScreenState extends State<HelloScreen> {
           ),
         ),
         const SizedBox(height: 4),
-        const Text(
-          'Вход',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: Color(0xFF5A8D61),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen())
+              );
+          },
+          child: const Text(
+            'Вход',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF5A8D61),
+            ),
           ),
         ),
       ],
