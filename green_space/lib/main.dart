@@ -11,9 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Plant Care App',
+      title: 'GreenSpace',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Comfortaa',
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF5A8D61),
           primary: const Color(0xFF5A8D61),

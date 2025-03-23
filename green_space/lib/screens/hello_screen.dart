@@ -1,50 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:green_space/screens/registration_screen.dart';
 
-class HelloScreen extends StatelessWidget {
+class HelloScreen extends StatefulWidget {
   const HelloScreen({super.key});
+
+  @override
+  State<HelloScreen> createState() => _HelloScreenState();
+}
+
+class _HelloScreenState extends State<HelloScreen> {
+  bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F0ED),
+      backgroundColor: const Color(0xffe6e5df),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 12),
-              const Text(
-                'HelloScreen',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black54,
-                ),
-              ),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.network(
-                      'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-sFFIrKx9KoyNnnvMZjHZBZYulbj742.png',
-                      height: 200,
-                      fit: BoxFit.contain,
+                    Image.asset(
+                      'assets/images/homeScreen/leafs.png',
+                      height: 300,
+                      fit: BoxFit.cover,
                     ),
                     const SizedBox(height: 24),
                     RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         style: TextStyle(
-                          fontSize: 28,
+                          fontFamily: 'Comfortaa',
+                          fontSize: 38,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                           height: 1.2,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black.withValues(alpha: 0.25),
+                              offset: Offset(0, 4),
+                              blurRadius: 4,
+                            )
+                          ]
                         ),
                         children: [
-                          TextSpan(text: 'Забота о растении – это первый шаг к заботе о '),
+                          TextSpan(
+                            text: 'Забота о растении – это первый шаг к заботе о ',
+                          ),
                           TextSpan(
                             text: 'мире',
-                            style: TextStyle(color: Color(0xFF5A8D61)),
+                            style: TextStyle(color: Color(0xff3b6029)),
                           ),
                         ],
                       ),
@@ -65,38 +75,86 @@ class HelloScreen extends StatelessWidget {
   }
 
   Widget _buildStartButton() {
-    return Container(
-      width: double.infinity,
-      height: 56,
-      decoration: BoxDecoration(
-        color: const Color(0xFF5A8D61),
-        borderRadius: BorderRadius.circular(28),
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          const Text(
-            'Начинаем!',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isPressed = true;
+        });
+
+        Future.delayed(Duration(milliseconds: 300), () {
+          setState(() {
+            _isPressed = false;
+          });
+        });
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => RegistrationScreen())
+        );
+      },
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 200),
+        width: double.infinity,
+        height: 48,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerRight,
+            end: Alignment.centerLeft,
+            colors: [
+              Color(0xFF305529),
+              Color(0xFFB3C08B),
+            ],
           ),
-          Positioned(
-            right: 16,
-            child: Row(
-              children: [
-                for (int i = 0; i < 3; i++)
-                  const Icon(
-                    Icons.chevron_right,
-                    color: Colors.white,
-                    size: 18,
-                  ),
-              ],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.25),
+              offset: Offset(0, 4),
+              blurRadius: 4,
             ),
-          ),
-        ],
+          ],
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Stack(
+          children: [
+            AnimatedPositioned(
+              duration: Duration(milliseconds: 200),
+              top: 0,
+              left: _isPressed ? 50 : 0, // Сдвигаем текст вправо при нажатии
+              right: 0,
+              bottom: 0,
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Image.asset(
+                      'assets/icons/arrow_right_in_circle_512.png',
+                      height: 36,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8),
+                      child: const Text(
+                        'Начинаем!',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 6),
+                      child: Image.asset(
+                        'assets/icons/three_arrows_next_512.png',
+                        height: 24,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -118,15 +176,6 @@ class HelloScreen extends StatelessWidget {
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: Color(0xFF5A8D61),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          width: 120,
-          height: 4,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(2),
           ),
         ),
       ],
