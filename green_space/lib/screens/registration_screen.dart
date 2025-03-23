@@ -112,6 +112,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                           SizedBox(
                             height: 30,
                             child: TextInput(
+                              // controller: ,
                               placeholder: 'Имя', 
                               borderRadius: 24,
                             )
@@ -119,6 +120,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                           SizedBox(
                             height: 30,
                             child: TextInput(
+                              // controller: ,
                               placeholder: 'Email', 
                               borderRadius: 24,
                             )
@@ -126,6 +128,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                           SizedBox(
                             height: 30,
                             child: TextInput(
+                              // controller: ,
                               placeholder: 'Пароль', 
                               borderRadius: 24,
                             )
