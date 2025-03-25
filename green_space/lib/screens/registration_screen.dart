@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:green_space/screens/qr_code_read_screen.dart';
 import 'package:green_space/widgets/next_button.dart';
 import 'package:green_space/widgets/text_input.dart';
 
@@ -105,6 +106,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                 child: Padding(
                   padding: EdgeInsets.all(32),
                   child: Column(
+                    spacing: 32,
                     children: [
                       Column(
                         spacing: 25,
@@ -173,7 +175,12 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                           )
                         ],
                       ),
-                      NextButton(onPressed: () => {})
+                      NextButton(onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => QrCodeReadScreen())
+                          )
+                      })
                     ],
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:green_space/screens/qr_code_read_screen.dart';
 import 'package:green_space/widgets/next_button.dart';
 import 'package:green_space/widgets/text_input.dart';
 
@@ -114,7 +115,12 @@ class LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
 
-                      NextButton(onPressed: () => {})
+                      NextButton(onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => QrCodeReadScreen())
+                          )
+                      })
                     ],
                   ),
                 ),
